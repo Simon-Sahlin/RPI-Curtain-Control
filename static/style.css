@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+:root {
+    --light-blue: rgb(216, 240, 255);
+
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+h1{
+    text-align: center;
+}
+
+.inputField{
+    width: 75%;
+    min-width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.inputField input{
+    width: 100%;
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    border: none;
+    background-color: var(--light-blue);
+    padding: 3px;
+    border-radius: 5px;
+    text-align: center;
+}
+.tall input{
+    aspect-ratio: 1/1;
+}
+
+body{
+    display: grid;
+    height: 100svh;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+}
+
+#mainControls, #weekControls{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+#mainControls > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slider, #buttons, #mainInputs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.slider {
+    flex-grow: 1;
+    writing-mode: vertical-lr;
+    direction: rtl;
+    appearance: slider-vertical;
+    vertical-align: bottom;
+
+    width: 100px;
+    background: #d3d3d3;
+    background-color: black;
+
+    transform: rotate(180deg);
+}
+
+.button{
+    background-color: var(--light-blue);
+    width: 90%;
+    aspect-ratio: 1/1;
+    border-radius: 999px;
+    color: lightskyblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#up > svg, #down > svg{
+    scale: 0.5;
+}
+
+#stop > svg{
+    scale: 0.75;
+}
+
+#weekControls{
+    width: 100vw;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+#weekControls > div{
+    scale: 0.75;
+}

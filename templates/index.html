@@ -4,11 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YOOOOO</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+    <script src="{{url_for('.static', filename='index.js')}}" defer></script>
 </head>
 <body>
-    wazaaaaaa
-    {% if testVar %}
-        <h1>Hello! {{testVar}}</h1>
-    {% endif %}
+    <h1>Curtain Controller</h1>
+    <div id="mainControls">
+        <div id="slider">
+            <div class="inputField">
+                <input type="number" value={{curtainPos}}>
+                <p>Current Position</p>
+            </div>
+            <input class="slider" orient="vertical" type="range" value={{curtainPos}} min="1" max={{maxPos}}>
+            <div class="inputField">
+                <input type="number" value={{maxPos}}>
+                <p>Max Position</p>
+            </div>
+        </div>
+        <div id="buttons">
+            <div class="button" id="up"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>triangle</title><path fill="currentColor" d="M1,21H23L12,2" /></svg></div>
+            <div class="button" id="stop"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>stop</title><path fill="currentColor" d="M18,18H6V6H18V18Z" /></svg></div>
+            <div class="button" id="down"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>triangle-down</title><path fill="currentColor" d="M1 3H23L12 22" /></svg></div>
+        </div>
+        <div id="mainInputs">
+            <div class="inputField tall">
+                <input type="time" value={{tomorrowTime}}>
+                <p>Tomorrow</p>
+            </div>
+            <div class="inputField tall">
+                <input type="time" value={{lowerTime}}>
+                <p>Lower Time</p>
+            </div>
+        </div>
+    </div>
+    <div id="weekControls">
+        <div class="inputField tall">
+            <input type="time" value={{mondayTime}}>
+            <p>Monday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{tuesdayTime}}>
+            <p>Tuesday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{wednesdayTime}}>
+            <p>Wednesday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{thursdayTime}}>
+            <p>Thursday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{fridayTime}}>
+            <p>Friday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{saturdayTime}}>
+            <p>Saturday</p>
+        </div>
+        <div class="inputField tall">
+            <input type="time" value={{sundayTime}}>
+            <p>Sunday</p>
+        </div>
+    </div>
 </body>
 </html>
