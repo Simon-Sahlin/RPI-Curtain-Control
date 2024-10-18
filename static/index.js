@@ -85,7 +85,7 @@ slider.addEventListener('change', () => {
     curtainPos.value = slider.value;
     sendAction({
         action: "moveTo",
-        value: (slider.value/maxPos.value)
+        value: (slider.value / maxPos.value)
     });
 });
 

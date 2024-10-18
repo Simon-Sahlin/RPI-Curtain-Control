@@ -31,6 +31,7 @@ def getData():
 def getAction():
     try:
         action = request.json["action"]
+        print(request.json)
         if (action == "moveTo"):
             position = float(request.json['value'])
             motor.stopMotor()
