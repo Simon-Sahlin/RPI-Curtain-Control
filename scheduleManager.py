@@ -31,7 +31,7 @@ class ScheduleManager:
             while True:
                 now = dt.datetime.now().strftime("%H:%M")
                 waitTime = 60 - dt.datetime.now().time().second
-                print("Current Time is: " + str(dt.datetime.now().time()))
+                # print("Current Time is: " + str(dt.datetime.now().time()))
 
                 if (now == self.timers[dt.datetime.today().weekday()]):
                     self.motor.moveMotor(0)
@@ -42,7 +42,3 @@ class ScheduleManager:
                     time.sleep(waitTime)
 
                 time.sleep(waitTime % 5 + 5)
-
-
-# bruh = ScheduleManager(None)
-# bruh.watch()
