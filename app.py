@@ -41,8 +41,9 @@ def getAction():
             response = motor.stopMotor()
             return response, 200
         else:
-            return "Invalid action", 400
+            raise Exception("Invalid Action")
     except Exception as e:
+        print(e)
         return str(e), 400
 
 
