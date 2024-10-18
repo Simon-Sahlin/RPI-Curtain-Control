@@ -58,7 +58,12 @@ async function sendAction(action){
 
     if (res.ok) {
         console.log('Action sent');
-        console.log(action)
+        let responseData = await res.json()
+        if ('position' in responseData){
+            let stepPos = responseData.position * maxPos.value;
+            slider.value = stepPos;
+            curtainPos.value = stepPos;
+        }
     } else {
         console.log('Action failed');
     }
@@ -93,7 +98,7 @@ curtainPos.addEventListener('change', () =>{
     slider.value = curtainPos.value;
     sendAction({
         action: "moveTo",
-        value: curtainPos.value
+        value: (curtainPos.value / maxPos.value)
     });
 });
 

@@ -3,6 +3,7 @@ from gpiozero import LED, Button
 import RPi.GPIO as GPIO
 import time
 from threading import Thread, Lock
+from flask import jsonify
 
 
 # -------------------------------- GPIO SETUP -------------------------------- #
@@ -68,12 +69,18 @@ class MotorController:
 
         self.movementThread = Thread(target=self.__move, args=(to,))
         self.movementThread.start()
-        return "Motor movement started"
+        return jsonify({
+            'message': 'Motor movement started',
+            'position': to
+        })
 
     def stopMotor(self):
         with self.lock:
             self.moving = False
-        return "Motor Stopped"
+        return jsonify({
+            'message': 'Motor stopped',
+            'position': (self.curPos/self.maxPos)
+        })
 
     def __move(self, to):
         toPos = int(to*self.maxPos)
