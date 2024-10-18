@@ -10,11 +10,6 @@ scheduleManager = ScheduleManager(motor, app)
 scheduleManager.startWatch()
 
 
-@app.teardown_appcontext
-def shutdown_session(exception=None):
-    print("SHUTTING DOWN")
-
-
 @app.get("/")
 def index():
     return render_template("index.html", 
