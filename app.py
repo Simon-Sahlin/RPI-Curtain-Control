@@ -2,9 +2,18 @@ from flask import Flask
 from flask import render_template
 from flask import request
 from motorController import MotorController
+from scheduleManager import ScheduleManager
 
 app = Flask(__name__)
 motor = MotorController()
+scheduleManager = ScheduleManager(motor, app)
+scheduleManager.startWatch()
+
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+    print("SHUTTING DOWN")
+
 
 @app.get("/")
 def index():
