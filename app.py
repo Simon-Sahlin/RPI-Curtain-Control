@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+import datetime as dt
 from motorController import MotorController
 from scheduleManager import ScheduleManager
 
@@ -13,29 +14,29 @@ scheduleManager.startWatch()
 @app.get("/")
 def index():
     return render_template("index.html", 
-        curtainPos= 32034,
-        maxPos= 5500*16,
-        tomorrowTime="09:00",
-        lowerTime="22:30",
-        mondayTime="09:00",
-        tuesdayTime="08:00",
-        wednesdayTime="08:00",
-        thursdayTime="08:00",
-        fridayTime="09:00",
-        saturdayTime="10:00",
-        sundayTime="10:00"
+        curtainPos = motor.curPos,
+        maxPos = motor.maxPos,
+        tomorrowTime = scheduleManager.timers[(dt.datetime.today().weekday() + 1) % 7],
+        timers = scheduleManager.timers
     )
 
 @app.post("/")
 def getData():
-    print(request.json)
-    return "Request Recived"
+    try:
+        print(request.json)
+        motor.curPos = int(request.json["currentPos"])
+        motor.maxPos = int(request.json["maxPos"])
+        scheduleManager.timers = request.json["times"]
+        return "Request Recived"
+    except Exception as e:
+        print(e)
+        return str(e), 400
 
 @app.post("/action")
 def getAction():
     try:
-        action = request.json["action"]
         print(request.json)
+        action = request.json["action"]
         if (action == "moveTo"):
             position = float(request.json['value'])
             motor.stopMotor()

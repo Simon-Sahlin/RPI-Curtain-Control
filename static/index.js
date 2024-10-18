@@ -22,7 +22,6 @@ let downButt = document.querySelector("#down")
 
 function getState(){
     return {
-        sliderPos: slider.value,
         currentPos: curtainPos.value,
         maxPos: maxPos.value,
         times: times.map(a => a.value)
@@ -96,10 +95,7 @@ slider.addEventListener('change', () => {
 
 curtainPos.addEventListener('change', () =>{
     slider.value = curtainPos.value;
-    sendAction({
-        action: "moveTo",
-        value: (curtainPos.value / maxPos.value)
-    });
+    updateState();
 });
 
 maxPos.addEventListener('change', () => {
