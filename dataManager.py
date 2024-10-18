@@ -10,7 +10,7 @@ class DataManager:
     def loadData(self):
         data = self.readData()
         print(data)
-        self.motor.maxPos = data["maxPos"]
+        self.motor.maxPos = int(data["maxPos"])
         self.sched.timers = data["times"]
 
     def readData(self):

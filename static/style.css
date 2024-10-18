@@ -88,9 +88,8 @@ body{
     border-radius: 999px;
     color: lightskyblue;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
 }
 
 #up > svg, #down > svg{
