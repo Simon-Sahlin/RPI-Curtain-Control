@@ -4,11 +4,14 @@ from flask import request
 import datetime as dt
 from motorController import MotorController
 from scheduleManager import ScheduleManager
+from dataManager import DataManager
 
 app = Flask(__name__)
 motor = MotorController()
 scheduleManager = ScheduleManager(motor, app)
 scheduleManager.startWatch()
+dataManager = DataManager(motor, scheduleManager)
+dataManager.loadData()
 
 
 @app.get("/")
@@ -27,6 +30,9 @@ def getData():
         motor.curPos = int(request.json["currentPos"])
         motor.maxPos = int(request.json["maxPos"])
         scheduleManager.timers = request.json["times"]
+
+        dataManager.writeData(request.json)
+
         return "Request Recived"
     except Exception as e:
         print(e)
