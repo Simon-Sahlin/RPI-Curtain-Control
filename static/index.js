@@ -48,7 +48,7 @@ async function updateState(){
 }
 
 async function sendAction(action){
-    let res = await fetch('/', {
+    let res = await fetch('/action', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ upButt.addEventListener('click', () => sendAction({
 
 downButt.addEventListener('click', () => sendAction({
     action: "moveTo",
-    value: maxPos.value
+    value: 1
 }));
 
 stopButt.addEventListener('click', () => sendAction({
@@ -85,7 +85,7 @@ slider.addEventListener('change', () => {
     curtainPos.value = slider.value;
     sendAction({
         action: "moveTo",
-        value: slider.value
+        value: (slider.value/maxPos.value)
     });
 });
 

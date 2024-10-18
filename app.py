@@ -1,8 +1,10 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from motorController import MotorController
 
 app = Flask(__name__)
+motor = MotorController()
 
 @app.get("/")
 def index():
@@ -25,8 +27,37 @@ def getData():
     print(request.json)
     return "Request Recived"
 
-
+@app.post("/action")
+def getAction():
+    try:
+        action = request.json["action"]
+        if (action == "moveTo"):
+            position = float(request.json['value'])
+            motor.stopMotor()
+            response = motor.moveMotor(position)
+            return response, 200
+        elif (action == "stop"):
+            response = motor.stopMotor()
+            return response, 200
+        else:
+            return "Invalid action", 400
+    except Exception as e:
+        return str(e), 400
 
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
+
+
+
+
+# import time
+
+
+# motorController = MotorController()
+
+
+
+# print(motorController.moveMotor(0))
+# time.sleep(5)
+# print(motorController.stopMotor())
