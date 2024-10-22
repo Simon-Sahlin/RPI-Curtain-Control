@@ -64,8 +64,7 @@ class MotorController:
                 print("Motor is already moving")
                 return
         if (to < 0 or to > 1):
-            print("Input value has to be between 0 and 1")
-            return
+            print("WARNING: Input values not between 0-1 is out of set bounds")
 
         self.movementThread = Thread(target=self.__move, args=(to,))
         self.movementThread.start()

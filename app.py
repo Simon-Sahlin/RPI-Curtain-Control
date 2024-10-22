@@ -5,13 +5,18 @@ import datetime as dt
 from motorController import MotorController
 from scheduleManager import ScheduleManager
 from dataManager import DataManager
+from buttonManager import ButtonManager
 
 app = Flask(__name__)
 motor = MotorController()
+
 scheduleManager = ScheduleManager(motor, app)
 scheduleManager.startWatch()
+
 dataManager = DataManager(motor, scheduleManager)
 dataManager.loadData()
+
+buttonManager = ButtonManager(motor, app)
 
 
 @app.get("/")
